@@ -13,6 +13,7 @@ import temp from '@/components/member/temp/temp'
 import login from '@/components/member/login/login'
 import tasks from '@/components/member/tasks/tasks'
 import strategy from '@/components/member/strategy/strategy'
+import tasksDetail from '@/components/member/tasks/tasksDetail'
 
 Vue.use(VueRouter)
 
@@ -33,7 +34,8 @@ const router = new VueRouter({
       path: '/memberHome',
       name: 'memberHome',
       component: memberHome,
-      children: [{
+      children: [
+        {
           path: '/memberHome/activityIndex',
           name: 'activityIndex',
           component: activityIndex
@@ -77,6 +79,11 @@ const router = new VueRouter({
           path: '/memberHome/tasks',
           name: 'tasks',
           component: tasks
+        },
+        {
+          path: '/memberHome/tasksDetial/:taskID',
+          name: 'tasksDetail',
+          component: tasksDetail
         },
         {
           path: '/memberHome/strategy',

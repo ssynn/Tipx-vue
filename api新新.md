@@ -82,6 +82,10 @@ Content-Type: application/json
 - 207 无此任务
 - 208 不能为本人接受任务
 
+### 3XX Tip错误码
+- 301 无此Tip
+- 302 不是本人
+
 ## 任务状态码
 - 0 已发布，未接受
 - 1 已接受
@@ -114,8 +118,8 @@ Content-Type: application/json
     {
         "id":"String", //用户id
         "psw":"String", //密码
-        "name":"String", //用户昵称
-        "intro":"String" //用户简介
+        "name":"String", //用户昵称
+        "intro":"String" //用户简介
     },
 
     "logininfo":
@@ -324,10 +328,87 @@ Content-Type: application/json
 |名称|HTTP动词|URL|参数|返回|功能|
 |---|--------|---|---|---|----|
 |告示板|GET|/notice|无|note:告示|查询告示板内容|
-|查看手册|GET|/book|无|content:目录|查询手册目录|
-|查看对应章节|GET|/book/s|id:手册id|section:章节|查看对应文章|
-|查看所有攻略|GET|/tips|pn:页码|tiplist:攻略列表|查看攻略|
-|发布攻略|POST|/tips|tip:攻略|res:结果|发布攻略|
+|查看所有攻略|GET|/f|pn:页码|tiplist:攻略列表|查看攻略|
+|发布攻略|POST|/f|tip:攻略|res:结果|发布攻略|
 |查看攻略|GET|/p/:id|无|tip:攻略|查看攻略|
-|修改攻略|POST|/p/:id|tip:攻略|res:结果|修改攻略|
+|修改攻略|POST|/p/:id/edit|tip:攻略|res:结果|修改攻略|
 |删除攻略|DELETE|/p/:id|无|res:结果|删除攻略|
+|*查看手册|GET|/book|无|content:目录|查询手册目录|
+|*查看对应章节|GET|/book/s|id:手册id|section:章节|查看对应文章|
+
+### 参数说明
+```json
+// GET参数
+{
+    "pn":"Number" // 页码
+}
+
+// URL占位符
+{
+    "id":"String" // 攻略id
+}
+// POST JSON
+{
+    "tip":
+    {
+        "title":"String", // 标题
+        "content":"String" // 内容
+    }
+}
+
+
+// 服务器返回JSON
+{
+    "res":
+    {
+        "status":"String", // failure/success
+        "data":
+        {
+            "error":"Number", // 错误码
+            "msg":"String" //信息
+        }   
+    },
+
+     "note":
+    {
+        "status":"String", // failure/success
+        "data":
+        {
+            "error":"Number", // 错误码
+            "msg":"String", //信息
+            "note":"String" // markdown内容
+        }   
+    },
+
+    "tip":
+    {
+        "status":"String", // failure/success
+        "data":
+        {
+            "error":"Number", // 错误码
+            "msg":"String", //信息
+            "tip":
+            {
+                "title":"String", // 标题  
+                "poster":"String", // 发布者ID
+                "content":"String", // 内容
+                "time":"String" //时间  
+            }
+        }   
+    },
+
+    "tiplist":
+    {
+        "status":"String", // failure/success
+        "data":
+        {
+            "error":"Number", // 错误码
+            "msg":"String", //信息
+            "tips":
+            [
+                {"id":"Number", "title":"String", "intro":"String"} // id:tip id title:标题 intro:简介，50字
+            ]
+        }  
+    }
+}
+```

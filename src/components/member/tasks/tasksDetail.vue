@@ -8,8 +8,8 @@
         <p class="title">{{mainData.title}}</p>
         <div class="sDate">
           <flexbox>
-            <flexbox-item>发布时间：{{mainData.publishDate}}</flexbox-item>
-            <flexbox-item>浏览量：{{mainData.viewer}}</flexbox-item>
+            <flexbox-item>发布时间：{{mainData.time}}</flexbox-item>
+            <flexbox-item>发布者：{{mainData.posterid}}</flexbox-item>
           </flexbox>
         </div>
       </div>
@@ -17,33 +17,53 @@
         <p v-html="mainData.content">{{mainData.content}}</p>
       </div>
     </div>
+    
+    <button class="acceptTaskButton" v-if="canAccept" v-on:click="acceptTask" >接受任务</button>
+    <button class="canNotAcceptTaskButton" v-else>任务已被领取</button>
   </div>
 </template>
 <script>
 import { Flexbox, FlexboxItem, XImg } from "vux";
+import axios from 'axios'
 
 export default {
   mounted() {
     this.loadDetail();
-    this.$store.commit("UPDATE_PAGE_TITLE", "活动详情");
+    this.$store.commit("UPDATE_PAGE_TITLE", "任务详情");
   },
   data() {
     return {
-      mainData: ""
+      mainData: "",
+      canAccept: true
     };
   },
   methods: {
     loadDetail() {
-      let self = this;
-      let id = this.$route.params.activityId;
-      this.baseAjax({
-        url: "../../../static/basicData/activityDetail.json",
-        showLoading: true,
-        success: function(data) {
-          console.log(data.returnObject);
-          self.mainData = data.returnObject;
+      let id = this.$route.params.taskID;
+      this.id = this.$cookies.get("id");
+      var token = this.$cookies.get(this.id);
+      axios({
+        method: "get",
+        url: "/api/tasks/" + id,
+        headers: {
+          "Authorization": token
         }
+      })
+      .then(res => {
+        this.mainData = res.data.data.task;
+        console.log(this.mainData);
+        this.mainData.time = this.mainData.time.substr(0, 10);
+        // 根据是否有人接受任务修改按钮的显示内容
+        if (this.mainData.doerid != null) {
+          this.canAccept = false;
+        }
+      })
+      .catch(err => {
+        console.log(err);
       });
+    },
+    acceptTask() {
+      console.log(122);
     }
   },
 
@@ -91,5 +111,29 @@ export default {
 .activityDetail .text-top {
   border-bottom: 1px solid #eee;
   padding: 10px 15px 15px 15px;
+}
+
+.acceptTaskButton {
+  position: absolute;
+  bottom: 3.6rem;
+  left: 35%;
+  border: 0px;
+  border-radius: 0.7rem;
+  color: white;
+  height: 2rem;
+  width: 30%;
+  background: #E64A19;
+}
+
+.canNotAcceptTaskButton {
+  position: absolute;
+  bottom: 3.6rem;
+  left: 35%;
+  border: 0px;
+  border-radius: 0.7rem;
+  color: white;
+  height: 2rem;
+  width: 30%;
+  background: #757575;
 }
 </style>

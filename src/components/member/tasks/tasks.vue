@@ -4,15 +4,13 @@
     <!-- 标签，遍历itemList生成列表 -->
     <div class="activeItem" v-for="item in itemList">
       <!-- 跳转按钮，按下以后会跳转到指定页面 -->
-      <router-link :to="'/memberHome/activityDetail/'+item.id">
+      <router-link :to="'/memberHome/tasksDetial/'+item.id">
         <div class="newsImg">
           <img src="../../../assets/images/news-img.png">
         </div>
         <div class="sbottom">
-          <p class="title">{{item.title}}</p>
-          <p class="time-line">
-            <span class="time">{{item.startDate}} - {{item.endDate}}</span>
-          </p>
+          <p class="taskTitle">{{item.title}}</p>
+          <p class="taskIntro">{{item.intro}}</p>
         </div>
       </router-link>
     </div>
@@ -43,19 +41,19 @@ export default {
         method: "get",
         url: "/api/tasks/f",
         headers: {
-          "Authorization": " Bearer " + token
+          "Authorization": token
         },
         data: {
           pn: "0"
         }
       })
-        .then(res => {
-          console.log(res.data.data);
-          this.itemList = res.data.data.tasks;
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      .then(res => {
+        console.log(res.data.data);
+        this.itemList = res.data.data.tasks;
+      })
+      .catch(err => {
+        console.log(err);
+      });
     }
   },
   components: {
