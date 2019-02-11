@@ -143,7 +143,7 @@ export default {
 .register-wrap {
   text-align: center;
 }
-input {
+.login-wrap > input {
   display: block;
   width: 250px;
   height: 40px;

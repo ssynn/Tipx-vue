@@ -5,7 +5,7 @@
       <!-- 跳转按钮，按下以后会跳转到指定页面 -->
       <router-link :to="'/memberHome/activityDetail/'+item.id">
         <div class="newsImg">
-          <img src="../../../assets/images/news-img.png">
+          <img src="../../../assets/images/news-img.jpg">
         </div>
         <div class="sbottom">
           <p class="title">{{item.title}}</p>

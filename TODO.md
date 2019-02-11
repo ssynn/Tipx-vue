@@ -4,4 +4,17 @@
   * 保存cookie
   * 注册
 * 任务委托
+* |告示板|GET|/notice|无|note:告示|查询告示板内容|
+* ~~|所有任务|GET|/f|pn:页码|tasklist|查看所有任务|~~
+* ~~|发布任务|POST|/f|task:任务内容|taskid:地址|发布任务|~~
+* ~~|查看任务|GET|/:taskid|无|task:任务内容|查看详细信息|~~
+* ~~|接受任务|POST|/:taskid/accept|无|res:结果|接受任务|~~
+* |申请完成|POST|/:taskid/complete/req|无|res:结果|申请完成任务|
+* |确认完成|POST|/:taskid/complete/cfm|无|res:结果|确认完成任务|
+* |提出修改|POST|/:taskid/edit/req|task:任务内容|res:结果|申请提出修改|
+* |确认修改|POST|/:taskid/edit/cfm|无|res:结果|确认任务修改|
+* |申请放弃|POST|/:taskid/abd/req|无|res:结果|申请放弃任务|
+* |确认放弃|POST|/:taskid/abd/cfm|无|res:结果|确认放弃任务|
+* |删除任务|DELETE|/:taskid|无|res:结果|删除任务|
+* |查看更新|GET|/:taskid/update|无|updatedtask:更新任务|查看任务更新|
   

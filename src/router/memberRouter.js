@@ -12,8 +12,9 @@ import mine from '@/components/member/mine/mine'                            // ä
 import temp from '@/components/member/temp/temp'
 import login from '@/components/member/login/login'
 import tasks from '@/components/member/tasks/tasks'
-import strategy from '@/components/member/strategy/strategy'
+import newTask from '@/components/member/tasks/newTask'
 import tasksDetail from '@/components/member/tasks/tasksDetail'
+import strategy from '@/components/member/strategy/strategy'
 
 Vue.use(VueRouter)
 
@@ -84,6 +85,11 @@ const router = new VueRouter({
           path: '/memberHome/tasksDetial/:taskID',
           name: 'tasksDetail',
           component: tasksDetail
+        },
+        {
+          path: '/memberHome/newTask',
+          name: 'newTask',
+          component: newTask
         },
         {
           path: '/memberHome/strategy',

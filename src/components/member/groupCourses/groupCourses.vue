@@ -42,7 +42,7 @@
     </div>
     <div class="classItems">
       <div class="activeItem" v-for="(item,index) in courseList" :key="index">
-          <img src="../../../assets/images/news-img.png"/>
+          <img src="../../../assets/images/news-img.jpg"/>
           <div class='sbottom'>
             <p class="title">{{item.title}}</p>
             <p class="time-line"><span  class='time'>{{item.startTime}} - {{item.endTime}}</span> 

@@ -1,7 +1,7 @@
 <template>
 	<div class="activityDetail">
 		<div class="newsImg">
-             <img src="../../../assets/images/news-img.png"/>
+             <img src="../../../assets/images/news-img.jpg"/>
 		</div>
 		<div class="detail-box">
 			<div class="text-top">
