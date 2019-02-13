@@ -21,7 +21,7 @@
     <button class="acceptTaskButton" v-if="canAccept==0" v-on:click="acceptTask">接受任务</button>
     <button class="canNotAcceptTaskButton" v-else-if="canAccept==1">任务已被领取</button>
     <div class="optButtons" v-else-if="canAccept==2">
-      <button style="background:#448AFF;">修改</button>
+      <button style="background:#448AFF;" @click="editTask">修改</button>
       <button style="background:#D32F2F;" @click="deleteTask">删除</button>
     </div>
     <div class="optButtons" v-else>
@@ -47,56 +47,56 @@ export default {
   },
   methods: {
     loadDetail() {
-      let id = this.$route.params.taskID;
+      this.taskID = this.$route.params.taskID;
       this.id = this.$cookies.get("id");
-      var token = this.$cookies.get(this.id);
+      this.token = this.$cookies.get(this.id);
       axios({
         method: "get",
-        url: "/api/tasks/" + id,
+        url: "/api/tasks/p/" + this.taskID,
         headers: {
-          Authorization: token
+          Authorization: this.token
         }
       })
-      .then(res => {
-        this.mainData = res.data.data.task;
-        this.mainData.time = this.mainData.time.substr(0, 10);
-        console.log(this.id);
-        console.log(this.mainData);
-        // 是发布者
-        if (this.mainData.posterid == this.id) {
-          this.canAccept = 2;
-          return;
-        }
-        // 是任务接受者
-        if (this.mainData.doerid == this.id) {
-          this.canAccept = 3;
-          return;
-        }
-        // 可以接受任务
-        if (this.mainData.doerid == null && this.id != this.mainData.posterid) {
-          this.canAccept = 0;
-          return;
-        }
-        // 不是发布者也不是接受者不能接受任务
-        if (this.mainData.doerid != this.id && this.id != this.mainData.posterid) {
-          this.canAccept = 1;
-          return;
-        }
-        
-      })
-      .catch(err => {
-        console.log(err);
-      });
+        .then(res => {
+          this.mainData = res.data.data.task;
+          this.mainData.time = this.mainData.time.substr(0, 10);
+          // 是发布者
+          if (this.mainData.posterid == this.id) {
+            this.canAccept = 2;
+            return;
+          }
+          // 是任务接受者
+          if (this.mainData.doerid == this.id) {
+            this.canAccept = 3;
+            return;
+          }
+          // 可以接受任务
+          if (
+            this.mainData.doerid == null &&
+            this.id != this.mainData.posterid
+          ) {
+            this.canAccept = 0;
+            return;
+          }
+          // 不是发布者也不是接受者不能接受任务
+          if (
+            this.mainData.doerid != this.id &&
+            this.id != this.mainData.posterid
+          ) {
+            this.canAccept = 1;
+            return;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     acceptTask() {
-      let id = this.$route.params.taskID;
-      this.id = this.$cookies.get("id");
-      let token = this.$cookies.get(this.id);
       axios({
         method: "post",
-        url: "/api/tasks/" + id + "/accept",
+        url: "/api/tasks/p/" + this.taskID + "/accept",
         headers: {
-          Authorization: token
+          Authorization: this.token
         }
       })
         .then(res => {
@@ -111,23 +111,23 @@ export default {
         });
     },
     deleteTask() {
-      let id = this.$route.params.taskID;
-      let token = this.$cookies.get(this.id);
-      console.log('delete');
-      // axios({
-      //   method: "delete",
-      //   url: "/api/tasks/"+id,
-      //   headers: {
-      //     Authorization: token
-      //   }
-      // })
-      // .then(res => {
-      //   if (res.data.status == 'success') {
-      //     alert('申请删除成功!');
-      //   } else {
-      //     alert(res.data.data.msg);
-      //   }
-      // })
+      axios({
+        method: "delete",
+        url: "/api/tasks/p/" + this.taskID,
+        headers: {
+          Authorization: this.token
+        }
+      }).then(res => {
+        if (res.data.status == "success") {
+          alert("申请删除成功!");
+          this.$router.push({ name: "tasks" });
+        } else {
+          alert(res.data.data.msg);
+        }
+      });
+    },
+    editTask() {
+      this.$router.push({name: 'editTask', params: {taskID:this.taskID}});
     }
   },
 
@@ -223,5 +223,4 @@ export default {
   border-radius: 0.5rem;
   color: white;
 }
-
 </style>

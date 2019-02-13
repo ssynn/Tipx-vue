@@ -20,7 +20,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.commit("UPDATE_PAGE_TITLE", "创建新的的任务");
+    this.$store.commit("UPDATE_PAGE_TITLE", "创建新的任务");
   },
   methods: {
     newTask() {

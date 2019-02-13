@@ -10,10 +10,19 @@ import personalCourses from '@/components/member/personalCourses/personalCourses
 import personalCourseDetail from '@/components/member/personalCourses/personalCourseDetail' // 预约任务组件
 import mine from '@/components/member/mine/mine'                            // 个人详情页组件
 import temp from '@/components/member/temp/temp'
+
+// 登录
 import login from '@/components/member/login/login'
+
+// 任务
 import tasks from '@/components/member/tasks/tasks'
 import newTask from '@/components/member/tasks/newTask'
 import tasksDetail from '@/components/member/tasks/tasksDetail'
+import postedTasks from '@/components/member/tasks/postedTasks'
+import receivedTasks from '@/components/member/tasks/received'
+import editTask from '@/components/member/tasks/editTask'
+
+// 攻略
 import strategy from '@/components/member/strategy/strategy'
 
 Vue.use(VueRouter)
@@ -25,11 +34,11 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      redirect: '/memberHome/tasks'
+      redirect: '/memberHome/mine'
     },
     {
       path: '*',
-      redirect: '/memberHome/tasks'
+      redirect: '/memberHome/mine'
     },
     {
       path: '/memberHome',
@@ -90,6 +99,21 @@ const router = new VueRouter({
           path: '/memberHome/newTask',
           name: 'newTask',
           component: newTask
+        },
+        {
+          path: 'memberHome/postedTasks',
+          name: 'postedTasks',
+          component: postedTasks
+        },
+        {
+          path: 'memberHome/received',
+          name: 'received',
+          component: receivedTasks
+        },
+        {
+          path: 'memberHome/editTask/:taskID',
+          name: 'editTask',
+          component: editTask
         },
         {
           path: '/memberHome/strategy',

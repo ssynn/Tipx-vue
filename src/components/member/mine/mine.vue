@@ -13,10 +13,23 @@
       <h2>{{userName}}</h2>
       <p class="idStyle">{{id}}</p>
       <p class="introStyle">{{intro}}</p>
-      <button class="logout" v-on:click="logoutFunction">注销</button>
+      <div>
+        <router-link to="memberHome/postedTasks" >
+          <p class="postedTasks">
+            我发布的任务
+          </p>
+        </router-link>
+      </div>
+      <div>
+        <router-link to="memberHome/received">
+          <p class="receivedTasks">
+            我领取的任务
+          </p>
+        </router-link>
+      </div>
+      
+      <button class="logoutButton" v-on:click="logoutFunction">注销</button>
     </div>
-    
-    <router-view></router-view>
   </div>
 </template>
 
@@ -38,7 +51,7 @@ export default {
       this.token = this.$cookies.get(this.id);
       axios({
         method: 'get',
-        url: '/api/user/' + this.id + '/info'
+        url: '/api/user/u/' + this.id + '/info'
       })
       .then((res) => {
         this.userName = res.data.data.user.name;
@@ -103,13 +116,20 @@ export default {
   margin-top: 1rem;
 }
 
-.logout {
+.logoutButton {
+  position: absolute;
+  bottom: 4rem;
+  left: 35%;
   height: 2rem;
-  width: 4rem;
+  width: 35%;
   border: 0;
-  margin-top: 2rem;
   background-color: tomato;
   color: white;
   border-radius: 0.5rem;
 }
+
+.postedTasks .receivedTasks{
+  color: black;
+}
+
 </style>
