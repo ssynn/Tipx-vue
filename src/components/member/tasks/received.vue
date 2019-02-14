@@ -38,7 +38,7 @@ export default {
       /*接口请求*/
       axios({
         method: "get",
-        url: "/api/user/u/"+this.id+"/task",
+        url: "/api/user/task/accepted",
         headers: {
           "Authorization": token
         },

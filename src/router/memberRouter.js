@@ -8,8 +8,12 @@ import activityDetail from '@/components/member/activities/activityDetail'  // �
 import groupCourses from '@/components/member/groupCourses/groupCourses'    // 校园攻略组件
 import personalCourses from '@/components/member/personalCourses/personalCourses'           // 校园活动组件
 import personalCourseDetail from '@/components/member/personalCourses/personalCourseDetail' // 预约任务组件
-import mine from '@/components/member/mine/mine'                            // 个人详情页组件
 import temp from '@/components/member/temp/temp'
+
+// 个人信息
+import mine from '@/components/member/mine/mine'
+import editUserInfo from '@/components/member/mine/editUserInfo'
+import newPassword from '@/components/member/mine/newPassword'
 
 // 登录
 import login from '@/components/member/login/login'
@@ -61,11 +65,6 @@ const router = new VueRouter({
           component: groupCourses
         },
         {
-          path: '/memberHome/mine',
-          name: 'mine',
-          component: mine
-        },
-        {
           path: '/memberHome/personalCourses',
           name: 'personalCourses',
           component: personalCourses
@@ -75,16 +74,35 @@ const router = new VueRouter({
           name: 'personalCourseDetail',
           component: personalCourseDetail
         },
+        // 个人信息界面
+        {
+          path: '/memberHome/mine',
+          name: 'mine',
+          component: mine
+        },
+        {
+          path: 'memberHome/editUserInfo',
+          name: 'editUserInfo',
+          component: editUserInfo
+        },
+        {
+          path: 'memberHome/newPassword',
+          name: 'newPassword',
+          component: newPassword
+        },
+        // 测试界面
         {
           path: '/memberHome/temp',
           name: 'temp',
           component: temp
         },
+        // 登录
         {
           path: '/memberHome/login',
           name: 'login',
           component: login
         },
+        // tasks
         {
           path: '/memberHome/tasks',
           name: 'tasks',

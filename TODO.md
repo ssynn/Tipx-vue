@@ -5,12 +5,12 @@
   * ~~|发布任务|POST|/f|task:任务内容|taskid:地址|发布任务|OK|~~
   * ~~|查看任务+|GET|/p/:taskid|无|task:任务内容|查看详细信息|OK|~~
   * ~~|接受任务+|POST|/p/:taskid/accept|无|res:结果|接受任务|OK|~~
-  * |申请完成+|POST|/p/:taskid/complete/req|无|res:结果|申请完成任务|OK|
-  * |确认完成+|POST|/p/:taskid/complete/cfm|无|res:结果|确认完成任务|OK|
+  * ~~|申请完成+|POST|/p/:taskid/complete/req|无|res:结果|申请完成任务|OK|~~
+  * ~~|确认完成+|POST|/p/:taskid/complete/cfm|无|res:结果|确认完成任务|OK|~~
   * ~~|提出修改+|POST|/p/:taskid/edit/req|task:任务内容|res:结果|申请提出修改|OK|~~
-  * |确认修改+|POST|/p/:taskid/edit/cfm|无|res:结果|确认任务修改|OK|
-  * |申请放弃+|POST|/p/:taskid/abd/req|无|res:结果|申请放弃任务|OK|
-  * |确认放弃+|POST|/p/:taskid/abd/cfm|无|res:结果|确认放弃任务|OK|
+  * ~~|确认修改+|POST|/p/:taskid/edit/cfm|无|res:结果|确认任务修改|OK|~~
+  * ~~|申请放弃+|POST|/p/:taskid/abd/req|无|res:结果|申请放弃任务|OK|~~
+  * ~~|确认放弃+|POST|/p/:taskid/abd/cfm|无|res:结果|确认放弃任务|OK|~~
   * ~~|删除任务+|DELETE|/p/taskid|无|res:结果|删除任务|OK|~~
   * |查看更新+|GET|/p/:taskid/update|无|updatedtask:更新任务|查看任务更新|OK|
   * |*查看证据|GET|/:taskid/e|无|evidencelist:证据列表|查看当前任务证据|未完成|
@@ -19,11 +19,11 @@
 * |名称|HTTP动词|URL|参数|返回|功能|状态|
   * ~~|注册|POST|/register|reginfo:注册信息|res:返回信息|注册|OK|~~
   * ~~|登录|POST|/login|logininfo:登录信息|token:token|登录并获取token|OK|~~
-  * |修改密码+|POST|/u/:id/psw|chpswinfo:修改密码信息|res:返回信息|修改密码|OK|
+  * ~~|修改密码+|POST|/u/:id/psw|chpswinfo:修改密码信息|res:返回信息|修改密码|OK|~~
   * ~~|详细信息+|GET|/u/:id/info|无|userinfo:用户信息|查询用户信息|OK|~~
   * ~~|查看已发布任务+|GET|/u/:id/ptask|无|tasklist:任务列表|查看已发布任务|OK|~~
   * ~~|查看已接受任务+|GET|/task/accepted|无|tasklist:任务列表|查看已接受任务|OK|~~
   * |查看已发布的Tip|GET|/tip|无|tiplist:Tip列表|查看已发布的Tip|OK|
   * |查看已发布的Work|GET|/work|无|tiplist:Work列表|查看已发布的Work|OK|
-  * |修改信息+|POST|/u/:id/info|chuserinfo:用户信息|userinfo:新用户信息|修改用户信息|OK|
+  * ~~|修改信息+|POST|/u/:id/info|chuserinfo:用户信息|userinfo:新用户信息|修改用户信息|OK|~~
   

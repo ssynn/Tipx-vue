@@ -14,15 +14,29 @@
       <p class="idStyle">{{id}}</p>
       <p class="introStyle">{{intro}}</p>
       <div>
+        <router-link to="memberHome/newPassword">
+          <p class="minePageItems">
+            修改密码
+          </p>
+        </router-link>
+      </div>
+      <div>
+        <router-link to="memberHome/editUserInfo">
+          <p class="minePageItems">
+            修改个人信息
+          </p>
+        </router-link>
+      </div>
+      <div>
         <router-link to="memberHome/postedTasks" >
-          <p class="postedTasks">
+          <p class="minePageItems">
             我发布的任务
           </p>
         </router-link>
       </div>
       <div>
         <router-link to="memberHome/received">
-          <p class="receivedTasks">
+          <p class="minePageItems">
             我领取的任务
           </p>
         </router-link>
@@ -128,7 +142,7 @@ export default {
   border-radius: 0.5rem;
 }
 
-.postedTasks .receivedTasks{
+.minePageItems{
   color: black;
 }
 

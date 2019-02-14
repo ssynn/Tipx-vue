@@ -31,10 +31,12 @@ export default {
     ToRegister: function() {
       this.showLogin = false;
       this.showRegister = true;
+      this.$store.commit("UPDATE_PAGE_TITLE", "用户注册");
     },
     ToLogin: function() {
       this.showLogin = true;
       this.showRegister = false;
+      this.$store.commit("UPDATE_PAGE_TITLE", "用户登录");
     },
     loginFunction() {
       if (this.id == "" || this.password == "") {
@@ -88,7 +90,7 @@ export default {
           data: {
             reginfo: JSON.stringify({ 
               id: this.id,
-              username: this.username,
+              name: this.username,
               psw: this.password,
               intro: this.intro
             })
@@ -132,6 +134,7 @@ export default {
     if (this.$cookies.get(this.username)) {
       console.log("用户已登录");
     }
+    this.$store.commit("UPDATE_PAGE_TITLE", "用户登录");
   }
 };
 </script>
