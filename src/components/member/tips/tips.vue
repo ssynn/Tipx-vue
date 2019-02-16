@@ -3,7 +3,7 @@
     <!-- 标签，遍历itemList生成列表 -->
     <div class="activeItem" v-for="item in itemList">
       <!-- 跳转按钮，按下以后会跳转到指定页面 -->
-      <router-link :to="'/memberHome/tasksDetail/'+item.id">
+      <router-link :to="'/memberHome/tipDetail/'+item.id">
         <div class="newsImg">
           <img src="../../../assets/images/news-img.jpg">
         </div>
@@ -13,7 +13,7 @@
         </div>
       </router-link>
     </div>
-    <router-link to="/memberHome/newTask">
+    <router-link to="/memberHome/newTip">
       <img class="newTaskButton" src="../../../assets/images/icons/new.png">
     </router-link>
   </div>
@@ -25,10 +25,11 @@ export default {
   mounted() {
     this.id = this.$cookies.get("id");
     if (this.id) {
-      this.loadLatest(this.$cookies.get(this.id));
+      this.token = this.$cookies.get(this.id);
+      this.loadLatest(0);
     }
 
-    this.$store.commit("UPDATE_PAGE_TITLE", "所有的任务");
+    this.$store.commit("UPDATE_PAGE_TITLE", "所有攻略");
   },
   data() {
     return {
@@ -37,21 +38,21 @@ export default {
   },
   methods: {
     // 加载数据方法从json中读取项目列表，把数据存入itemList
-    loadLatest(token) {
+    loadLatest(page) {
       /*接口请求*/
       axios({
         method: "get",
-        url: "/api/tasks/f",
+        url: "/api/tips/f",
         headers: {
-          "Authorization": token
+          "Authorization": this.token
         },
         data: {
-          pn: "0"
+          pn: String(page)
         }
       })
       .then(res => {
         console.log(res.data.data);
-        this.itemList = res.data.data.tasks;
+        this.itemList = res.data.data.tips;
         for (let index = 0; index < this.itemList.length; index++) {
           if (this.itemList[index].intro.length>20){
             this.itemList[index].intro = this.itemList[index].intro.substr(0, 20) + '...';

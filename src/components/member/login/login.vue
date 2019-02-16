@@ -58,8 +58,8 @@ export default {
         .then(res => {
           // 处理登录数据
           if (res.data.status == 'success'){
-            this.$cookies.set('id', this.id, 60*1000);
-            this.$cookies.set(this.id,  " Bearer " + res.data.data.token, 60*1000);
+            this.$cookies.set('id', this.id, 3600);
+            this.$cookies.set(this.id,  " Bearer " + res.data.data.token, 3600);
             this.tishiStyle.color = 'green';
             this.tishi = '登录成功';
             this.showTishi = true;

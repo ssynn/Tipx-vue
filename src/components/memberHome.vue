@@ -18,7 +18,7 @@
           <img slot="icon" src="../assets/images/icons/news_icon.png">
           <span slot="label">任务委托</span>
         </tabbar-item>
-        <tabbar-item link="/memberHome/strategy">
+        <tabbar-item link="/memberHome/tips">
           <img slot="icon" src="../assets/images/icons/guide_icon.png">
           <span slot="label">校园攻略</span>
         </tabbar-item>

@@ -3,7 +3,7 @@
     <!-- 标签，遍历itemList生成列表 -->
     <div class="activeItem" v-for="item in itemList">
       <!-- 跳转按钮，按下以后会跳转到指定页面 -->
-      <router-link :to="'/memberHome/tasksDetial/'+item.id">
+      <router-link :to="'/memberHome/tasksDetail/'+item.id">
         <div class="newsImg">
           <img src="../../../assets/images/news-img.jpg">
         </div>

@@ -27,3 +27,23 @@
   * |查看已发布的Work|GET|/work|无|tiplist:Work列表|查看已发布的Work|OK|
   * ~~|修改信息+|POST|/u/:id/info|chuserinfo:用户信息|userinfo:新用户信息|修改用户信息|OK|~~
   
+# 攻略Tips API api/tips
+* |名称|HTTP动词|URL|参数|返回|功能|状态|
+  * |告示板|GET|/notice|无|note:告示|查询告示板内容|OK|
+  * ~~|查看所有攻略|GET|/f|pn:页码|tiplist:攻略列表|查看攻略|OK|~~
+  * ~~|发布攻略|POST|/f|tip:攻略|res:结果|发布攻略|OK|~~
+  * ~~|查看攻略|GET|/p/:id|无|tip:攻略|查看攻略|OK|~~
+  * ~~|修改攻略|POST|/p/:id/edit|tip:攻略|res:结果|修改攻略|OK|~~
+  * ~~|删除攻略|DELETE|/p/:id|无|res:结果|删除攻略|OK|~~
+  * |*查看手册|GET|/book|无|content:目录|查询手册目录|未完成|
+  * |*查看对应章节|GET|/book/s|id:手册id|section:章节|查看对应文章|未完成|
+
+# 工作 Works API
+* |名称|HTTP动词|URL|参数|返回|功能|状态|
+  * |企业信息告示板|/notice|无|显示企业信息告示|未测试|
+  * |查看兼职信息列表|GET|/f/w|pn:页码|worklist:信息列表|返回十项信息|未测试|
+  * |查看外包信息列表|GET|/f/o|pn:页码|outlist:信息列表|返回十项信息|未测试|
+  * |发布工作信息|POST|/f|work:兼职信息|res:结果|发布信息|未测试|
+  * |查看工作信息|GET|/p/:workid|无|work:工作信息|查看信息|未测试|
+  * |修改工作信息|POST|/p/:workid/edit|work:工作信息|res:结果|修改信息|未测试|
+  * |删除工作信息|DELETE|/p/:workid|无|res:结果|删除信息|未测试|

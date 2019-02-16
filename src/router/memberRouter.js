@@ -27,7 +27,11 @@ import receivedTasks from '@/components/member/tasks/received'
 import editTask from '@/components/member/tasks/editTask'
 
 // 攻略
-import strategy from '@/components/member/strategy/strategy'
+import tips from '@/components/member/tips/tips'
+import newTip from '@/components/member/tips/newTip'
+import tipDetail from '@/components/member/tips/tipDetail'
+import editTip from '@/components/member/tips/editTip'
+import postedTips from '@/components/member/tips/postedTips'
 
 Vue.use(VueRouter)
 
@@ -109,7 +113,7 @@ const router = new VueRouter({
           component: tasks
         },
         {
-          path: '/memberHome/tasksDetial/:taskID',
+          path: '/memberHome/tasksDetail/:taskID',
           name: 'tasksDetail',
           component: tasksDetail
         },
@@ -133,10 +137,31 @@ const router = new VueRouter({
           name: 'editTask',
           component: editTask
         },
+        // 攻略
         {
-          path: '/memberHome/strategy',
-          name: 'strategy',
-          component: strategy
+          path: '/memberHome/tips',
+          name: 'tips',
+          component: tips
+        },
+        {
+          path: '/memberHome/newTip',
+          name: 'newTip',
+          component: newTip
+        },
+        {
+          path: '/memberHome/tipDetail/:tipID',
+          name: 'tipDetail',
+          component: tipDetail
+        },
+        {
+          path: '/memberHome/editTip/:tipID',
+          name: 'editTip',
+          component: editTip
+        },
+        {
+          path: '/memberHome/postedTips',
+          name: 'postedTips',
+          component: postedTips
         }
       ]
     },
